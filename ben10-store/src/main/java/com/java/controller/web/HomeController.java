@@ -18,7 +18,6 @@ import com.java.utils.SessionUtil;
 
 @WebServlet(urlPatterns = { "/trang-chu", "/dang-nhap","/dang-ky","/thoat" })
 public class HomeController extends HttpServlet {
-	
 	@Inject
 	private IUserService userService;
 	
