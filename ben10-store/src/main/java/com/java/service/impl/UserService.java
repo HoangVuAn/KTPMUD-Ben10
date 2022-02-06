@@ -12,12 +12,12 @@ public class UserService implements IUserService{
 	IUserDAO userDAO;
 	
 
-	public UserModel findByPhoneNumberAndPassWord(String phoneNumber, String password) {
+	public UserModel findByPhoneNumberAndPassWord(Long phoneNumber, String password) {
 		return userDAO.findByPhoneNumberAndPassWord(phoneNumber, password);
 	}
 
 
-	public Long createAccount(String userName, String password, String phoneNumber, String email) {
+	public Long createAccount(String userName, String password, Long phoneNumber, String email) {
 		return userDAO.createAccount(userName, password, phoneNumber, email);
 	}
 

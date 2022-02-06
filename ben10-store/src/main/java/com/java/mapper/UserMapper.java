@@ -12,9 +12,10 @@ public class UserMapper implements RowMapper<UserModel> {
 		try {
 			UserModel user = new UserModel();
 			user.setEmail(rs.getString("email"));
-			user.setPhoneNumber(rs.getString("phonenumber"));
+			user.setPhoneNumber(rs.getLong("phonenumber"));
 			user.setPassword(rs.getString("password"));
 			user.setUserName(rs.getString("username"));
+			user.setRoleId(rs.getLong("role_id"));
 			return user;
 		} catch (SQLException e) {
 			return null;

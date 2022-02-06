@@ -1,10 +1,11 @@
 package com.java.model;
 
 public class UserModel {
-	private	String userName;
-	private	String password;
-	private	String phoneNumber;
 	private String email;
+	private	String password;
+	private	String userName;
+	private	Long phoneNumber;
+	private	Long roleId;
 	public String getEmail() {
 		return email;
 	}
@@ -23,11 +24,17 @@ public class UserModel {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getPhoneNumber() {
+	public long getPhoneNumber() {
 		return phoneNumber;
 	}
-	public void setPhoneNumber(String phoneNumber) {
+	public void setPhoneNumber(long phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+	public Long getRoleId() {
+		return roleId;
+	}
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
 	}
 	
 }

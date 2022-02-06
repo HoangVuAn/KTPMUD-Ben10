@@ -82,7 +82,7 @@
                         </label>
                     </div>
                     <div class="col span-6-of-10">
-                        <input type="text" placeholder="01..., 08..., 09..., or +84..." class="form-control" id="phoneNumber" name="phoneNumber">
+                        <input type="number" placeholder="01..., 08..., 09..., or +84..." class="form-control" id="phoneNumber" name="phoneNumber">
                     </div>
                 </div>
                 <div>

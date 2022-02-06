@@ -73,16 +73,17 @@ public class HomeController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
 		if (action != null && action.equals("login")) {
-			UserModel model = FormUtil.toModel(UserModel.class, request);		//lay userName va password
-//			model.setPhoneNumber(request.getParameter("phoneNumber"));
-//			model.setPassword(request.getParameter("password"));
-			
+			UserModel model = FormUtil.toModel(UserModel.class, request);		//lay userName va password			
 			model = userService.findByPhoneNumberAndPassWord(model.getPhoneNumber(),model.getPassword());
 			
 			if(model!=null){
 				//getInstance la kiem tra xem doi tuong nay da ton tai chua, neu ton tai roi thi dung lai con chua co thi khoi tao
 				SessionUtil.getInstance().putValue(request, "USERMODEL", model);
-				response.sendRedirect(request.getContextPath()+"/trang-chu");
+				if(model.getRoleId() == 1){
+					response.sendRedirect(request.getContextPath()+"/trang-chu");
+				} else if(model.getRoleId() ==2){
+					response.sendRedirect(request.getContextPath()+"/admin-home");
+				}
 			}
 			else {
 				response.sendRedirect(request.getContextPath()+"/dang-nhap?action=login&message=username_password_invalid");
@@ -93,7 +94,7 @@ public class HomeController extends HttpServlet {
 
 			UserModel model = FormUtil.toModel(UserModel.class, request);
 			
-			if(model.getEmail().equals("") || model.getPassword().equals("") || model.getUserName().equals("") || model.getPhoneNumber().equals("")){
+			if(model.getEmail().equals("") || model.getPassword().equals("") || model.getUserName().equals("") || model.getPhoneNumber()== 0L){
 				response.sendRedirect(request.getContextPath()+"/dang-ky?action=register&message=chua_nhap_du");
 			} else if(!model.getPassword().equals(request.getParameter("password2"))){
 				response.sendRedirect(request.getContextPath()+"/dang-ky?action=register&message=mat_khau_khong_trung_khop");
