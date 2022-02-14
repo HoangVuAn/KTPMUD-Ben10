@@ -1,22 +1,19 @@
 package com.java.model;
 
 public class ProductModel extends AbstractModel<ProductModel> {
-	private String danhMuc; 
-	private	Long idSanPham;
+	private Long idDanhMuc; 
 	private	String ten;
 	private	Long gia;
 	private	Long soLuong;
-	public String getDanhMuc() {
-		return danhMuc;
+	private String moTa;
+	private String hinhAnh;
+	private String codeDanhMuc;
+
+	public Long getIdDanhMuc() {
+		return idDanhMuc;
 	}
-	public void setDanhMuc(String danhMuc) {
-		this.danhMuc = danhMuc;
-	}
-	public Long getIdSanPham() {
-		return idSanPham;
-	}
-	public void setIdSanPham(Long idSanPham) {
-		this.idSanPham = idSanPham;
+	public void setIdDanhMuc(Long idDanhMuc) {
+		this.idDanhMuc = idDanhMuc;
 	}
 	public String getTen() {
 		return ten;
@@ -35,6 +32,24 @@ public class ProductModel extends AbstractModel<ProductModel> {
 	}
 	public void setSoLuong(Long soLuong) {
 		this.soLuong = soLuong;
+	}
+	public String getMoTa() {
+		return moTa;
+	}
+	public void setMoTa(String moTa) {
+		this.moTa = moTa;
+	}
+	public String getHinhAnh() {
+		return hinhAnh;
+	}
+	public void setHinhAnh(String hinhAnh) {
+		this.hinhAnh = hinhAnh;
+	}
+	public String getCodeDanhMuc() {
+		return codeDanhMuc;
+	}
+	public void setCodeDanhMuc(String codeDanhMuc) {
+		this.codeDanhMuc = codeDanhMuc;
 	}
 	
 }

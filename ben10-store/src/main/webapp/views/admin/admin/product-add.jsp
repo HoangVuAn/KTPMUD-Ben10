@@ -112,9 +112,19 @@
                     <nav class="nav navbar-nav">
                         <ul class=" navbar-right">
                             <li class="nav-item dropdown open" style="padding-left: 15px;">
-                                Xin chào, Admin!
+                               	<c:if test="${not empty ADMINMODEL}">		<!-- neu da dang nhap roi -->
+									<li class="nav-item">
+               				 			<a class="nav-link" href='<c:url value="/thoat-admin?action=logout"/>'>Thoát</a>
+             			 			</li>
+             			 			<li class="nav-item">
+                						<a class="nav-link" href='#'>||</a>
+              						</li>
+              						<li class="nav-item">
+                						<a class="nav-link" href='#'>Wellcome, ${ADMINMODEL.userName}</a>
+              						</li>
+         						</c:if> 
+                               
                             </li>
-
                         </ul>
                     </nav>
                 </div>

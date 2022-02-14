@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
-<c:url var="APIurl" value="/api-admin-product"/>
-<c:url var="ProductURL" value="/admin-product"/>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,7 +54,6 @@
 <!-- <link href="../build/css/custom.min.css" rel="stylesheet"> -->
 <link rel="stylesheet"
 	href="<c:url value='/views/admin/admin/custom.css'/>">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body class="nav-md">
@@ -93,8 +90,9 @@
 								<li><a><i class="fa fa-shopping-cart"></i> Quản Trị Sản
 										Phẩm <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
-										<li><a href="/admin-danhmuc?type=list">Danh Mục</a></li>
-										<li><a href='<c:url value="/admin-product?type=list"/>'>Sản Phẩm</a></li>
+										<li><a href="#">Danh Mục</a></li>
+										<li><a href='<c:url value="/admin-product?type=list"/>'>Sản
+												Phẩm</a></li>
 										<li><a href="#">Bài Viết</a></li>
 									</ul></li>
 								<li><a><i class="fa fa-bar-chart-o"></i> Báo Cáo <span
@@ -128,19 +126,18 @@
 					<nav class="nav navbar-nav">
 						<ul class=" navbar-right">
 							<li class="nav-item dropdown open" style="padding-left: 15px;">
-									<c:if test="${not empty ADMINMODEL}">		<!-- neu da dang nhap roi -->
-										<li class="nav-item">
-               								<a class="nav-link" href='<c:url value="/thoat-admin?action=logout"/>'>Thoát</a>
-             							</li>
-             			 				<li class="nav-item">
-                							<a class="nav-link" href='#'>||</a>
-              							</li>
-              							<li class="nav-item">
-                							<a class="nav-link" href='#'>Wellcome, ${ADMINMODEL.userName}</a>
-              							</li>
+								<c:if test="${not empty ADMINMODEL}">		<!-- neu da dang nhap roi -->
+									<li class="nav-item">
+               							<a class="nav-link" href='<c:url value="/thoat-admin?action=logout"/>'>Thoát</a>
+             						</li>
+             			 			<li class="nav-item">
+                						<a class="nav-link" href='#'>||</a>
+              						</li>
+              						<li class="nav-item">
+                						<a class="nav-link" href='#'>Wellcome, ${ADMINMODEL.userName}</a>
+              						</li>
               			
-            						</c:if> 
-								
+            					</c:if> 
 							</li>
 						</ul>
 					</nav>
@@ -152,11 +149,9 @@
 			<div class="right_col" role="main">
 				<div class="page-title">
 					<div class="title-left">
-						<a href="/admin-home" style="font-size: 15px;"> Trang chủ
-							Admin </a> <span class=" fa fa-chevron-right"></span> <a href="#"
-							style="font-size: 15px;">Quản Trị Sản Phẩm</a> <span
-							class=" fa fa-chevron-right"></span> <a href="product.html"
-							style="font-size: 15px;">Sản Phẩm</a>
+						<a href="/admin-home" style="font-size: 15px;"> Trang chủ Admin </a> <span class=" fa fa-chevron-right"></span>
+						<a href="#" style="font-size: 15px;">Quản Trị Sản Phẩm</a> <span class=" fa fa-chevron-right"></span> 
+						<a href="/admin-danhmuc?type=list" style="font-size: 15px;">Danh mục</a>
 					</div>
 				</div>
 				<div class="clearfix"></div>
@@ -177,19 +172,13 @@
 												</div>
 												<div class="col-sm-6">
 													<div class="table-add-wrapper">
-														<a href="/admin-product?type=add">
+														<a href="/admin-danhmuc?type=add">
 															<button type="button" class="table-add">
 																<span class="glyphicon glyphicon-plus"></span> Thêm mới
 															</button>
 														</a>
-														<a>
-															<button type="button" class="table-add" id="btnDelete" style="background-color: red; ">
-																<span class="glyphicon glyphicon-minus"></span> Xóa
-															</button>
-														</a>
 													</div>
 												</div>
-												
 											</div>
 											<div class="row">
 												<div class="col-sm-12">
@@ -197,39 +186,29 @@
 														class="sp-table table-striped table-bordered">
 														<thead>
 															<tr>
-																<th><input type="checkbox" id="checkAll"></th>
-																<th>Mã sản phẩm</th>
-																<th>Danh mục</th>
-																<th>Tên sản phẩm</th>
-																<th>Giá</th>
-																<th>Số lượng</th>
-																<th>Mô tả</th>
-																<th>Hình ảnh</th>
+																<th>Mã danh mục</th>
+																<th>Tên danh mục</th>
+																<th>Code Danh Mục</th>
 																<th>Tác vụ</th>
 															</tr>
 														</thead>
 
 														<tbody>
-															<c:forEach var="item" items="${product.listResult}">
+															<c:forEach var="item" items="${danhmuc.listResult}">
 																<tr>
-																	<td><input type="checkbox" id="checkbox_${item.id}" value="${item.id}"></td>
 																	<td>${item.id}</td>
-																	<c:forEach var="itemx" items="${danhmuc}">
-																		<c:if test="${itemx.id == item.idDanhMuc}">
-																			<td>${itemx.ten}</td>
-																		</c:if>
-    																</c:forEach>
 																	<td>${item.ten}</td>
-																	<td>${item.gia}</td>
-																	<td>${item.soLuong}</td>
-																	<td>${item.moTa}</td>
-																	<td>${item.hinhAnh}</td>
-																	<td><c:url var="editURL" value="/admin-product">
+																	<td>${item.code}</td>
+																	<td><c:url var="editURL" value="/admin-danhmuc">
 																			<c:param name="type" value="edit" />
 																			<c:param name="id" value="${item.id}" />
 																		</c:url> <a href='${editURL}' class="table-action"
-																		title="Cập nhật sản phẩm"><span class="fa fa-edit"></span></a>
-																		
+																		title="Cập nhật danh mục"><span class="fa fa-edit"></span></a>
+																		<c:url var="deleteURL" value="/admin-danhmuc">
+																			<c:param name="type" value="delete" />
+																			<c:param name="id" value="${item.id}" />
+																		</c:url> <a href='${deleteURL}' class="table-action"
+																		title="Xóa danh mục"><span class="fa fa-close"></span></a>
 																	</td>
 																</tr>
 															</c:forEach>
@@ -257,30 +236,6 @@
 		<!-- /footer content -->
 	</div>
 	</div>
-	<script>
-		$("#btnDelete").click(function(){
-			var data = {};
-			var ids = $('tbody input[type=checkbox]:checked').map(function () {
-	            return $(this).val();
-	        }).get();
-			data['ids'] = ids;
-			deleteProduct(data);
-		});
-		function deleteProduct(data) {
-			$.ajax({
-				url: '${APIurl}',
-		        type: 'DELETE',
-		        contentType: 'application/json',	//client gui len server json
-		        data: JSON.stringify(data),	//chuyen tu js object sang json
-		        success: function (result) {
-		            window.location.href="${ProductURL}?type=list";
-		        },
-		        error: function (error) {
-		        	console.log(error);
-		        }
-			});
-		}
-	</script>
 
 	<!-- jQuery -->
 	<script

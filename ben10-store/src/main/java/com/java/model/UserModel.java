@@ -5,7 +5,7 @@ public class UserModel {
 	private	String password;
 	private	String userName;
 	private	Long phoneNumber;
-	private	Long roleId;
+//	private	Long roleId;
 	public String getEmail() {
 		return email;
 	}
@@ -30,11 +30,11 @@ public class UserModel {
 	public void setPhoneNumber(long phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	public Long getRoleId() {
-		return roleId;
-	}
-	public void setRoleId(Long roleId) {
-		this.roleId = roleId;
-	}
+//	public Long getRoleId() {
+//		return roleId;
+//	}
+//	public void setRoleId(Long roleId) {
+//		this.roleId = roleId;
+//	}
 	
 }

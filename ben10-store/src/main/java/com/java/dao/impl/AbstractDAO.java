@@ -88,12 +88,12 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 	public void update(String sql, Object... parameters) {
 		Connection connection = null;
 		PreparedStatement statement = null;
-		
 		try {
 			connection = getConnection();
 			connection.setAutoCommit(false);		//khong cho tu dong commit
 			statement = connection.prepareStatement(sql); 
 			setParameter(statement, parameters);
+			statement.executeUpdate();
 			connection.commit();
 		} catch (SQLException e) {
 			if(connection!=null){
@@ -162,4 +162,5 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 		}
 		return null;
 	}
+
 }

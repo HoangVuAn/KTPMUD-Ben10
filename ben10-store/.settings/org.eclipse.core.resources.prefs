@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/java/controller/admin/api/DanhMucAPI.java=UTF-8
+encoding//src/main/java/com/java/controller/admin/api/ProductAPI.java=UTF-8
+encoding//src/main/java/com/java/dao/impl/ProductDAO.java=UTF-8
+encoding//src/main/java/com/java/utils/HttpUtil.java=UTF-8
 encoding//src/main/webapp/views/admin/admin/edit-product.jsp=UTF-8

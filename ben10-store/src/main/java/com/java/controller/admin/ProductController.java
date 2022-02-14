@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.java.constant.SystemConstant;
 import com.java.model.ProductModel;
+import com.java.service.IDanhMucService;
 import com.java.service.IProductService;
 import com.java.utils.FormUtil;
 
@@ -20,21 +21,31 @@ public class ProductController extends HttpServlet {
 	private static final long serialVersionUID = 6871723498916982699L;
 	@Inject
 	private IProductService productService;
-
+	@Inject
+	private IDanhMucService danhMucService;
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ProductModel model = FormUtil.toModel(ProductModel.class, request);
+		ProductModel product = FormUtil.toModel(ProductModel.class, request); //lay du lieu type vao product
 		String view = "";
-		if(model.getType().equals(SystemConstant.LIST)){
-			model.setListResult(productService.findAll());
+		if(product.getType().equals(SystemConstant.LIST)){
+			product.setListResult(productService.findAll());
+			request.setAttribute("danhmuc", danhMucService.findAll());
 			view = "views/admin/admin/product.jsp";
-		} else if(model.getType().equals(SystemConstant.EDIT)){
-			model = productService.findOne(model.getIdSanPham());
+		} else if(product.getType().equals(SystemConstant.EDIT)){
+			product = productService.findOne(product.getId());
+			request.setAttribute("danhmuc", danhMucService.findAll());
 			view = "views/admin/admin/edit-product.jsp";
-		} else if(model.getType().equals(SystemConstant.ADD)){
-			
+		} else if(product.getType().equals(SystemConstant.ADD)){
+			request.setAttribute("danhmuc", danhMucService.findAll());
+			view = "views/admin/admin/edit-product.jsp";
+		} 
+		else if(product.getType().equals(SystemConstant.DELETE)){
+			productService.deleteOne(product.getId());
+			product.setListResult(productService.findAll());
+			view = "views/admin/admin/product.jsp";
 		}
-		model.setListResult(productService.findAll());
-		request.setAttribute(SystemConstant.MODEL, model);
+		product.setListResult(productService.findAll());
+		request.setAttribute(SystemConstant.PRODUCT, product);
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}

@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
-<c:url var="APIurl" value="/api-admin-product"/>
-<c:url var="ProductURL" value="/admin-product"/>
+<c:url var="APIurl" value="/api-admin-danhmuc"/>
+<c:url var ="NewURL" value="/admin-danhmuc"/>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -134,14 +134,14 @@
 			<div class="right_col" role="main">
 				<div class="page-title">
 					<div class="title-left">
-						<a href="/admin-home" style="font-size: 15px;">Trang chủ Admin </a> <span class=" fa fa-chevron-right"></span>
-						<a href="/admin-product?type=list"	style="font-size: 15px;"> Quản Trị Sản Phẩm </a> <span class=" fa fa-chevron-right"></span> 
-						<a href="/admin-product?type=list" style="font-size: 15px;"> Sản Phẩm</a> <span class=" fa fa-chevron-right"></span> 
-		
-						<c:if test="${not empty product.id}">
+						<a href="/admin-home" style="font-size: 15px;"> Trang chủ Admin </a> <span class=" fa fa-chevron-right"></span>
+						<a href="#" style="font-size: 15px;">Quản Trị Sản Phẩm</a> <span class=" fa fa-chevron-right"></span> 
+						<a href="/admin-danhmuc?type=list" style="font-size: 15px;">Danh mục</a> <span class=" fa fa-chevron-right"></span> 
+
+						<c:if test="${not empty danhmuc.id}">
                         	<a href="#" style="font-size: 15px;">Sửa</a>
                         </c:if>
-                        <c:if test="${empty product.id}">
+                        <c:if test="${empty danhmuc.id}">
                             <a href="#" style="font-size: 15px;">Thêm</a>
                         </c:if>
 					</div>
@@ -158,94 +158,38 @@
 							<div class="x-content">
 								<div class="form-group">
 									<div class="col-md-3 col-sm-3">
-										<label class="x-label label-sp"> Hình ảnh: </label>
+										<label class="x-label label-sp"> Tên danh mục</label>
 									</div>
 									<div class="col-md-9 col-sm-9">
-										<input type="text" id="hinhAnh" name="hinhAnh">
+										<input type="text" id="ten" name="ten" value="${danhmuc.ten}">
 									</div>
 								</div>
 								<hr>
 								<div class="form-group">
 									<div class="col-md-3 col-sm-3">
-										<label class="x-label label-sp"> Danh mục: </label>
+										<label class="x-label label-sp"> Mã danh mục: </label>
 									</div>
 									<div class="col-md-9 col-sm-9">
-										<select class="form-control" id="codeDanhMuc" name="codeDanhMuc">
-                        					<c:if test="${empty product.codeDanhMuc}">
-                        						<option value="">Chọn loại bài viết</option>
-    											<c:forEach var="item" items="${danhmuc}">
-    												<option value="${item.code}">${item.ten}</option>
-    											</c:forEach>
-                        					</c:if>
-    								
-    										<c:if test="${not empty product.codeDanhMuc}">
-    											<option value="">Chọn loại bài viết</option>
-    									
-    											<c:forEach var="item" items="${danhmuc}">
-    												<option value="${item.code}" <c:if test="${item.code == product.codeDanhMuc}">selected="selected"</c:if>>
-    													${item.ten}
-    												</option>
-    											</c:forEach>
-    									
-                        					</c:if>
-  										</select>
+										<input type="text" class="textbox-sp" id="code" name="code" value="${danhmuc.code}">
 									</div>
 								</div>
-								<hr>
 								
-								<div class="form-group">
-									<div class="col-md-3 col-sm-3">
-										<label class="x-label label-sp"> Tên sản phẩm: </label>
-									</div>
-									<div class="col-md-9 col-sm-9">
-										<input type="text" class="textbox-sp" id="ten" name="ten" value="${product.ten}">
-									</div>
-								</div>
-								<hr>
-								<div class="form-group">
-									<div class="col-md-3 col-sm-3">
-										<label class="x-label label-sp"> Giá: </label>
-									</div>
-									<div class="col-md-9 col-sm-9">
-										<input type="text" class="textbox-sp" id="gia" name="gia" value="${product.gia}">
-									</div>
-								</div>
-								<hr>
-								<hr>
-								<div class="form-group">
-									<div class="col-md-3 col-sm-3">
-										<label class="x-label label-sp"> Số lượng: </label>
-									</div>
-									<div class="col-md-9 col-sm-9">
-										<input type="text" class="textbox-sp" id="soLuong" name="soLuong" value="${product.soLuong}">
-									</div>
-								</div>
-								<hr>
-								<div class="form-group">
-									<div class="col-md-3 col-sm-3">
-										<label class="x-label label-sp"> Mô tả: </label>
-									</div>
-									<div class="col-md-9 col-sm-9">
-										<input type="text" class="textbox-sp" id="moTa" name="moTa" value="${product.moTa}">
-									</div>
-								</div>
-								<hr>
 								<div class="form-group" style="margin-top: 30px;">
 									<div class="col-md-3 col-sm-3">
 										<label class="x-label label-sp"> </label>
 									</div>
 									<div class="col-md-9 col-sm-9">
 										
-										<c:if test="${not empty product.id}">
-                                 			<input type="button" class="btn btn-white btn-warning btn-bold" value="Cập nhật bài viết" id="btnAddOrUpdateProduct"/>
+										<c:if test="${not empty danhmuc.id}">
+                                 			<input type="button" class="btn btn-white btn-warning btn-bold" value="Cập nhật danh mục" id="btnAddOrUpdatedanhmuc"/>
                                  		</c:if>
-                                 		<c:if test="${empty product.id}">
-                                 			<input type="button" class="btn btn-white btn-warning btn-bold" value="Thêm bài viết" id="btnAddOrUpdateProduct"/>
+                                 		<c:if test="${empty danhmuc.id}">
+                                 			<input type="button" class="btn btn-white btn-warning btn-bold" value="Thêm danh mục" id="btnAddOrUpdatedanhmuc"/>
                                 		 </c:if>
 									</div>
 								</div>
 							</div>
-							<input type="hidden" value="${product.id}" id="id" name = "id"/>
+							<input type="hidden" value="${danhmuc.id}" id="id" name = "id"/>
 							</form>
 						</div>
 					</div>
@@ -263,7 +207,7 @@
 		<!-- /footer content -->
 	</div>
 <script>
-	$('#btnAddOrUpdateProduct').click(function (e) {
+	$('#btnAddOrUpdatedanhmuc').click(function (e) {
    		e.preventDefault();
    		//get du lieu tu cac field xuong(trong formSubmit)
     	var data = {};
@@ -276,13 +220,13 @@
     	
     	var id = $('#id').val();
     	if (id == "") {
-        	addProduct(data);
+        	adddanhmuc(data);
     	} else {
-        	updateProduct(data);
+        	updatedanhmuc(data);
     	}
 	});
 	
-	 function addProduct(data) {
+	 function adddanhmuc(data) {
 		$.ajax({
 			url: '${APIurl}',
 	        type: 'POST',
@@ -297,7 +241,7 @@
 	        }
 		});
 	}
-	    function updateProduct(data) {
+	    function updatedanhmuc(data) {
 	        $.ajax({
 	            url: '${APIurl}',
 	            type: 'PUT',
@@ -305,7 +249,7 @@
 	            data: JSON.stringify(data),
 	            dataType: 'json',
 	            success: function (result) {
-	            	 window.location.href="${ProductURL}?type=list";
+		            console.log(result);
 		        },
 		        error: function (error) {
 		        	console.log(error);

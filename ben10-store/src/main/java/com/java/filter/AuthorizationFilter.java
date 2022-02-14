@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.java.constant.SystemConstant;
+import com.java.model.AdminModel;
 import com.java.model.UserModel;
 import com.java.utils.SessionUtil;
 
@@ -31,14 +32,14 @@ public class AuthorizationFilter implements Filter{
 		String url = request.getRequestURI();	//lay duoc link hien tai dang request
 		if(url.startsWith("/admin")){
 			UserModel model = (UserModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
+			AdminModel admin = (AdminModel)SessionUtil.getInstance().getValue(request, "ADMINMODEL");
 			if(model!=null){
-				if(model.getRoleId() == 2){
-					filterChain.doFilter(servletRequest, servletResponse); //thong cua
-				} else if(model.getRoleId() == 1){
-					response.sendRedirect(request.getContextPath()+"/dang-nhap?action=login&message=not_permission");
-				}
+				response.sendRedirect(request.getContextPath()+"/dang-nhap-admin?action=login&message=not_permission");
+			}
+			else if(admin!=null){
+				filterChain.doFilter(servletRequest, servletResponse); //thong cua
 			} else{
-				response.sendRedirect(request.getContextPath()+"/dang-nhap?action=login&message=not_login");
+				response.sendRedirect(request.getContextPath()+"/dang-nhap-admin?action=login&message=not_login");
 			}
 		} else {
 			filterChain.doFilter(servletRequest, servletResponse);		//day la nhung url khong can filter

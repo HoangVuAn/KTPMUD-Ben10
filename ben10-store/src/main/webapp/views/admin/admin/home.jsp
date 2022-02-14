@@ -36,7 +36,7 @@
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
           <div class="navbar nav_title" style="border: 0;">
-            <a href="/ben10-store/admin-home" class="site_title">
+            <a href="/admin-home" class="site_title">
               <img src="<c:url value='/views/admin/admin/images/logo.png'/>" alt="" class="logo-img">
               <span>Ben10</span>
             </a>
@@ -53,20 +53,17 @@
           <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
               <ul class="nav side-menu">
-                <li class="active"><a><i class="fa fa-home"></i> Trang
-                    Chủ Admin </span></a></li>
+                <li class="active"><a><i class="fa fa-home"></i> Trang Chủ Admin </span></a></li>
                 <li><a><i class="fa fa-users"></i> Quản Trị Nhân viên <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                     <li><a href="#">Tuyển Dụng </a></li>
-                    <li><a href="account-nv.html">Đăng Ký Tài Khoản Nhân
-                        Viên</a></li>
+                    <li><a href="account-nv.html">Đăng Ký Tài Khoản Nhân Viên</a></li>
                     <li><a href="info-nv.html">Thông Tin Nhân Viên</a></li>
                   </ul>
                 </li>
-                <li><a><i class="fa fa-shopping-cart"></i> Quản Trị Sản
-                    Phẩm <span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa fa-shopping-cart"></i> Quản Trị Sản Phẩm <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
-                    <li><a href="#">Danh Mục</a></li>
+                    <li><a href="/admin-danhmuc?type=list">Danh Mục</a></li>
                     <li>
                     	<a href='<c:url value="/admin-product?type=list"/>'>Sản Phẩm</a>
                     </li>
@@ -106,7 +103,18 @@
           <nav class="nav navbar-nav">
             <ul class=" navbar-right">
               <li class="nav-item dropdown open" style="padding-left: 15px;">
-                Xin chào, Admin!
+				<c:if test="${not empty ADMINMODEL}">		<!-- neu da dang nhap roi -->
+						<li class="nav-item">
+               				 <a class="nav-link" href='<c:url value="/thoat-admin?action=logout"/>'>Thoát</a>
+             			 </li>
+             			 <li class="nav-item">
+                			<a class="nav-link" href='#'>||</a>
+              			</li>
+              			<li class="nav-item">
+                			<a class="nav-link" href='#'>Wellcome, ${ADMINMODEL.userName}</a>
+              			</li>
+              			
+            		</c:if> 
               </li>
 
             </ul>

@@ -35,7 +35,7 @@ public class HomeController extends HttpServlet {
 			String alert = request.getParameter("alert");
 			if(message != null ){
 				request.setAttribute("message", resourceBundle.getString(message));
-				}
+			}
 			if(alert != null){
 				request.setAttribute("alert", resourceBundle.getString(alert));	//k can resourceBundle vi alert duoc dinh nghia san tu param url
 			}
@@ -79,11 +79,7 @@ public class HomeController extends HttpServlet {
 			if(model!=null){
 				//getInstance la kiem tra xem doi tuong nay da ton tai chua, neu ton tai roi thi dung lai con chua co thi khoi tao
 				SessionUtil.getInstance().putValue(request, "USERMODEL", model);
-				if(model.getRoleId() == 1){
-					response.sendRedirect(request.getContextPath()+"/trang-chu");
-				} else if(model.getRoleId() ==2){
-					response.sendRedirect(request.getContextPath()+"/admin-home");
-				}
+				response.sendRedirect(request.getContextPath()+"/trang-chu");
 			}
 			else {
 				response.sendRedirect(request.getContextPath()+"/dang-nhap?action=login&message=username_password_invalid");
@@ -107,21 +103,6 @@ public class HomeController extends HttpServlet {
 				}else
 					response.sendRedirect(request.getContextPath()+"/dang-nhap?action=login&alert=dang_ky_thanh_cong");
 			}
-//			UserModel user = new UserModel();
-//			user.setPhoneNumber(request.getParameter("phoneNumber"));
-//			user.setPassword(request.getParameter("password"));
-//			user.setEmail(request.getParameter("email"));
-//			user.setUserName(request.getParameter("userName"));
-//			Long id = null;
-//			if(user.getPassword().equals(request.getParameter("password2")) && user.getEmail()!="" && user.getPassword()!="" && user.getPhoneNumber()!="" && user.getUserName()!=""){
-//				id = userService.createAccount(user.getUserName(),user.getPassword(),user.getPhoneNumber(),user.getEmail());
-//			}
-//			if(id!=null){
-//				PrintWriter out = response.getWriter();
-//				out.print("dang ky thanh cong");
-//			}else {
-//				response.sendRedirect(request.getContextPath()+"/dang-ky?action=register");
-//			}
 		}
 	}
 
