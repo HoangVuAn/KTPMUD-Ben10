@@ -11,7 +11,6 @@ public class AdminService implements IAdminService{
 	IAdminDAO adminDAO;
 	@Override
 	public AdminModel findByUsernameAndPassword(String userName, String password) {
-		
 		return adminDAO.findByUsernameAndPassword(userName, password);
 	}
 

@@ -54,7 +54,7 @@ public class DanhMucAPI extends HttpServlet{
 		
 		DanhMucModel productModel =  HttpUtil.of(request.getReader()).toModel(DanhMucModel.class);
 		
-//		danhMucService.deleteOne(productModel.getId());
+		danhMucService.delete(productModel.getIds());
 		mapper.writeValue(response.getOutputStream(), "{}");
 	}
 }

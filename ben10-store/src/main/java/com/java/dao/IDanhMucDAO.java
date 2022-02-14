@@ -9,7 +9,7 @@ public interface IDanhMucDAO extends GenericDAO<DanhMucModel>{
 	List<DanhMucModel> findAll();
 	DanhMucModel findOne(long id);
 	DanhMucModel findOneByCode(String code);
-	void deleteOne (Long idSanPham);
+	void deleteOne (Long idDanhmuc);
 	Long save(DanhMucModel danhMuc);
 	void update(DanhMucModel updateDanhMuc);
 }

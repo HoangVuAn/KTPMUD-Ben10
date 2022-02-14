@@ -37,5 +37,11 @@ public class DanhMucService implements IDanhMucService{
 		danhMucDao.update(updateDanhMuc);
 		return danhMucDao.findOne(updateDanhMuc.getId());
 	}
+	@Override
+	public void delete(long[] ids) {
+		for (long id : ids) {
+			danhMucDao.deleteOne(id);
+		}
+	}
 
 }

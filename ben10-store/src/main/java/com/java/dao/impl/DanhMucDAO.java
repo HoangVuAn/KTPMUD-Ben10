@@ -29,9 +29,9 @@ public class DanhMucDAO extends AbstractDAO<DanhMucModel> implements IDanhMucDAO
 	}
 
 	@Override
-	public void deleteOne(Long idSanPham) {
-		// TODO Auto-generated method stub
-		
+	public void deleteOne(Long idDanhMuc) {
+		String sql = "DELETE FROM danhmuc WHERE id_danhmuc = ?";
+		update(sql, idDanhMuc);
 	}
 
 	@Override

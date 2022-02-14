@@ -290,7 +290,7 @@
 	        data: JSON.stringify(data),	//chuyen tu js object sang json
 	        dataType: 'json',		//server gui ve client json
 	        success: function (result) {
-	            console.log(result);
+	        	window.location.href="${ProductURL}?type=list";
 	        },
 	        error: function (error) {
 	        	console.log(error);

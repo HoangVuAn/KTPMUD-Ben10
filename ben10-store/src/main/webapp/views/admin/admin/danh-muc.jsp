@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
+<c:url var="APIurl" value="/api-admin-danhmuc"/>
+<c:url var="ProductURL" value="/admin-danhmuc"/>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,6 +56,7 @@
 <!-- <link href="../build/css/custom.min.css" rel="stylesheet"> -->
 <link rel="stylesheet"
 	href="<c:url value='/views/admin/admin/custom.css'/>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body class="nav-md">
@@ -177,6 +180,11 @@
 																<span class="glyphicon glyphicon-plus"></span> Thêm mới
 															</button>
 														</a>
+														<a>
+															<button type="button" class="table-add" id="btnDelete" style="background-color: red; ">
+																<span class="glyphicon glyphicon-minus"></span> Xóa
+															</button>
+														</a>
 													</div>
 												</div>
 											</div>
@@ -186,6 +194,7 @@
 														class="sp-table table-striped table-bordered">
 														<thead>
 															<tr>
+																<th><input type="checkbox" id="checkAll"></th>
 																<th>Mã danh mục</th>
 																<th>Tên danh mục</th>
 																<th>Code Danh Mục</th>
@@ -196,6 +205,7 @@
 														<tbody>
 															<c:forEach var="item" items="${danhmuc.listResult}">
 																<tr>
+																	<td><input type="checkbox" id="checkbox_${item.id}" value="${item.id}"></td>
 																	<td>${item.id}</td>
 																	<td>${item.ten}</td>
 																	<td>${item.code}</td>
@@ -204,11 +214,7 @@
 																			<c:param name="id" value="${item.id}" />
 																		</c:url> <a href='${editURL}' class="table-action"
 																		title="Cập nhật danh mục"><span class="fa fa-edit"></span></a>
-																		<c:url var="deleteURL" value="/admin-danhmuc">
-																			<c:param name="type" value="delete" />
-																			<c:param name="id" value="${item.id}" />
-																		</c:url> <a href='${deleteURL}' class="table-action"
-																		title="Xóa danh mục"><span class="fa fa-close"></span></a>
+																	
 																	</td>
 																</tr>
 															</c:forEach>
@@ -236,7 +242,30 @@
 		<!-- /footer content -->
 	</div>
 	</div>
-
+	<script>
+		$("#btnDelete").click(function(){
+			var data = {};
+			var ids = $('tbody input[type=checkbox]:checked').map(function () {
+	            return $(this).val();
+	        }).get();
+			data['ids'] = ids;
+			deleteProduct(data);
+		});
+		function deleteProduct(data) {
+			$.ajax({
+				url: '${APIurl}',
+		        type: 'DELETE',
+		        contentType: 'application/json',	//client gui len server json
+		        data: JSON.stringify(data),	//chuyen tu js object sang json
+		        success: function (result) {
+		            window.location.href="${ProductURL}?type=list";
+		        },
+		        error: function (error) {
+		        	console.log(error);
+		        }
+			});
+		}
+	</script>
 	<!-- jQuery -->
 	<script
 		src="<c:url value='/views/admin/vendors/jquery/dist/jquery.min.js'/>"></script>

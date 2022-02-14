@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
 <c:url var="APIurl" value="/api-admin-danhmuc"/>
-<c:url var ="NewURL" value="/admin-danhmuc"/>
+<c:url var ="DanhMucURL" value="/admin-danhmuc"/>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -234,7 +234,7 @@
 	        data: JSON.stringify(data),	//chuyen tu js object sang json
 	        dataType: 'json',		//server gui ve client json
 	        success: function (result) {
-	            console.log(result);
+	        	window.location.href="${DanhMucURL}?type=list";
 	        },
 	        error: function (error) {
 	        	console.log(error);
@@ -249,7 +249,7 @@
 	            data: JSON.stringify(data),
 	            dataType: 'json',
 	            success: function (result) {
-		            console.log(result);
+	            	window.location.href="${DanhMucURL}?type=list";
 		        },
 		        error: function (error) {
 		        	console.log(error);

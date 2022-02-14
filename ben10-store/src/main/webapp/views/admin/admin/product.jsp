@@ -155,8 +155,8 @@
 						<a href="/admin-home" style="font-size: 15px;"> Trang chủ
 							Admin </a> <span class=" fa fa-chevron-right"></span> <a href="#"
 							style="font-size: 15px;">Quản Trị Sản Phẩm</a> <span
-							class=" fa fa-chevron-right"></span> <a href="product.html"
-							style="font-size: 15px;">Sản Phẩm</a>
+							class=" fa fa-chevron-right"></span>
+							 <a href="product.html" style="font-size: 15px;">Sản Phẩm</a>
 					</div>
 				</div>
 				<div class="clearfix"></div>

@@ -11,4 +11,5 @@ public interface IDanhMucService {
 	void deleteOne(Long idDanhMuc);
 	DanhMucModel save(DanhMucModel danhMucModel);
 	DanhMucModel update(DanhMucModel updateDanhMuc);
+	void delete(long[] ids);
 }
