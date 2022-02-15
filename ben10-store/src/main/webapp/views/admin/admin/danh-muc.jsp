@@ -16,7 +16,7 @@
 	href="<c:url value='/views/admin/admin/images/logo.png'/>"
 	type="image/ico" />
 
-<title>Sản Phẩm</title>
+<title>Danh Mục</title>
 
 <link rel="stylesheet"
 	href="<c:url value='/views/admin/admin/style.css'/>">

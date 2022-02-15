@@ -13,7 +13,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="<c:url value='/views/admin/admin/images/logo.png'/>"	type="image/ico" />
-<title>Sửa Sản Phẩm</title>
+
+<c:if test="${not empty product.id}">
+	<title>Sửa Sản Phẩm</title>
+</c:if>
+<c:if test="${empty product.id}">
+	<title>Thêm Sản Phẩm</title>
+</c:if>
 <link rel="stylesheet"
 	href="<c:url value='/views/admin/admin/style.css'/>">
 
