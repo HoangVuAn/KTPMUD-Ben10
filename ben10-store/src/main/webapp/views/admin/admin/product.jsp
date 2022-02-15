@@ -156,7 +156,7 @@
 							Admin </a> <span class=" fa fa-chevron-right"></span> <a href="#"
 							style="font-size: 15px;">Quản Trị Sản Phẩm</a> <span
 							class=" fa fa-chevron-right"></span>
-							 <a href="product.html" style="font-size: 15px;">Sản Phẩm</a>
+							 <a href="#" style="font-size: 15px;">Sản Phẩm</a>
 					</div>
 				</div>
 				<div class="clearfix"></div>
@@ -168,12 +168,13 @@
 									<div class="card-box table-responsive">
 										<div class="container-fluid">
 											<div class="row">
+												
 												<div class="col-sm-6">
-													<div class="datatable-filter">
-														<label> Tìm kiếm <input type="search"
-															class="table-search">
-														</label>
-													</div>
+													<form action="<c:url value='/admin-product'/>" id= "formSearch"	method = "GET" >
+														<input type="text" id="id" name="id">
+														<input	type = "hidden" value = "search" name = "type"/>
+														<input type="submit" value="tìm kiếm">
+													</form>
 												</div>
 												<div class="col-sm-6">
 													<div class="table-add-wrapper">

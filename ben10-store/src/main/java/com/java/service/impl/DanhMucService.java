@@ -43,5 +43,9 @@ public class DanhMucService implements IDanhMucService{
 			danhMucDao.deleteOne(id);
 		}
 	}
+	@Override
+	public List<DanhMucModel> findById(Long idDanhMuc) {
+		return danhMucDao.findById(idDanhMuc);
+	}
 
 }

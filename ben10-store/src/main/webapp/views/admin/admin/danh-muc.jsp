@@ -86,16 +86,13 @@
 										class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
 										<li><a href="#">Tuyển Dụng </a></li>
-										<li><a href="account-nv.html">Đăng Ký Tài Khoản Nhân
-												Viên</a></li>
+										<li><a href="account-nv.html">Đăng Ký Tài Khoản Nhân Viên</a></li>
 										<li><a href="info-nv.html">Thông Tin Nhân Viên</a></li>
 									</ul></li>
-								<li><a><i class="fa fa-shopping-cart"></i> Quản Trị Sản
-										Phẩm <span class="fa fa-chevron-down"></span></a>
+								<li><a><i class="fa fa-shopping-cart"></i> Quản Trị Sản Phẩm <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
 										<li><a href="#">Danh Mục</a></li>
-										<li><a href='<c:url value="/admin-product?type=list"/>'>Sản
-												Phẩm</a></li>
+										<li><a href='<c:url value="/admin-product?type=list"/>'>Sản Phẩm</a></li>
 										<li><a href="#">Bài Viết</a></li>
 									</ul></li>
 								<li><a><i class="fa fa-bar-chart-o"></i> Báo Cáo <span
@@ -167,11 +164,11 @@
 										<div class="container-fluid">
 											<div class="row">
 												<div class="col-sm-6">
-													<div class="datatable-filter">
-														<label> Tìm kiếm <input type="search"
-															class="table-search">
-														</label>
-													</div>
+													<form action="<c:url value='/admin-danhmuc'/>" id= "formSearch"	method = "GET" >
+														<input type="text" id="id" name="id">
+														<input	type = "hidden" value = "search" name = "type"/>
+														<input type="submit" value="tìm kiếm">
+													</form>
 												</div>
 												<div class="col-sm-6">
 													<div class="table-add-wrapper">

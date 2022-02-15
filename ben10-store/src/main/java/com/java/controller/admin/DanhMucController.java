@@ -32,6 +32,10 @@ public class DanhMucController extends HttpServlet{
 			view = "views/admin/admin/edit-danh-muc.jsp";
 		} else if(danhMuc.getType().equals(SystemConstant.ADD)){
 			view = "views/admin/admin/edit-danh-muc.jsp";
+		}else if(danhMuc.getType().equals(SystemConstant.SEARCH)){
+			Long id = danhMuc.getId();
+			danhMuc.setListResult(danhMucService.findById(id));
+			view = "views/admin/admin/danh-muc.jsp";
 		}
 		request.setAttribute(SystemConstant.DANHMUC, danhMuc);
 		RequestDispatcher rd = request.getRequestDispatcher(view);

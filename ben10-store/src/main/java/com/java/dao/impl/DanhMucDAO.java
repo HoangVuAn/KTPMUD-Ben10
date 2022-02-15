@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.java.dao.IDanhMucDAO;
 import com.java.mapper.DanhMucMapper;
+import com.java.mapper.ProductMapper;
 import com.java.model.DanhMucModel;
 
 public class DanhMucDAO extends AbstractDAO<DanhMucModel> implements IDanhMucDAO{
@@ -45,6 +46,12 @@ public class DanhMucDAO extends AbstractDAO<DanhMucModel> implements IDanhMucDAO
 	public void update(DanhMucModel updateDanhMuc) {
 		String sql = "UPDATE danhmuc SET ten = ?, code = ? WHERE id_danhmuc = ?";
 		update(sql,updateDanhMuc.getTen(),updateDanhMuc.getCode(),updateDanhMuc.getId());
+	}
+
+	@Override
+	public List<DanhMucModel> findById(Long idDanhMuc) {
+		String sql = "SELECT * FROM danhmuc WHERE id_danhmuc = ?";
+		return query(sql, new DanhMucMapper(), idDanhMuc);
 	}
 
 }

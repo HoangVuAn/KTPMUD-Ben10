@@ -21,12 +21,25 @@ public class ProductAPI extends HttpServlet{
 	@Inject
 	private IProductService productService;
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		ObjectMapper mapper = new ObjectMapper();
+
+		request.setCharacterEncoding("UTF-8");			//khi client gửi về tiếng việt ta phải set thành utf-8
+		response.setContentType("application/json");	//server trả kq về client file json
+		
+		ProductModel productModel =  HttpUtil.of(request.getReader()).toModel(ProductModel.class);		//convert tu json sang ProductModel
+		  // chuyen tu json sang String json//chuyen tu String json sang ProductModel
+		productModel = productService.findOne(productModel.getId());
+		
+		mapper.writeValue(response.getOutputStream(), productModel);	//tra ve client json
+	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		ObjectMapper mapper = new ObjectMapper();
 
 		request.setCharacterEncoding("UTF-8");			//khi client gửi về tiếng việt ta phải set thành utf-8
 		response.setContentType("application/json");	//server trả kq về client file json
+		
 		ProductModel productModel =  HttpUtil.of(request.getReader()).toModel(ProductModel.class);		//convert tu json sang ProductModel
 		  // chuyen tu json sang String json//chuyen tu String json sang ProductModel
 		productModel = productService.save(productModel);

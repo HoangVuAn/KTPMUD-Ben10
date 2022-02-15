@@ -43,8 +43,13 @@ public class ProductController extends HttpServlet {
 			productService.deleteOne(product.getId());
 			product.setListResult(productService.findAll());
 			view = "views/admin/admin/product.jsp";
+		}else if(product.getType().equals(SystemConstant.SEARCH)){
+			Long id = product.getId();
+			product.setListResult(productService.findById(id));
+			request.setAttribute("danhmuc", danhMucService.findAll());
+			view = "views/admin/admin/product.jsp";
 		}
-		product.setListResult(productService.findAll());
+//		product.setListResult(productService.findAll());
 		request.setAttribute(SystemConstant.PRODUCT, product);
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);

@@ -41,4 +41,10 @@ public class ProductDAO extends AbstractDAO<ProductModel> implements IProductDAO
 				,updateProduct.getMoTa(),updateProduct.getHinhAnh(),updateProduct.getId());
 	}
 
+	@Override
+	public List<ProductModel> findById(Long idSanPham) {
+		String sql = "SELECT * FROM sanpham WHERE id_sanpham = ?";
+		return query(sql, new ProductMapper(), idSanPham);
+	}
+
 }
